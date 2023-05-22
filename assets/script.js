@@ -38,7 +38,7 @@ $(document).ready(function() { // using ready() method to warp all the codes to 
     console.log("Button clicked"); // im just testing make sure my click function is working //after testing it is working 
     var city = $('#city-input').val(); // add val() method to id city-input and gave it a var name city so when input random city the brower will remember the cityName  user just entered
     if (city !== " ") { // city input can't not be empty. if is not empty then call the function loadData
-      loadData(city); // Call your function here
+      loadData(city); // Call the function 
     }// closing if statement
   }); // closing click fucntion
 
