@@ -6,7 +6,7 @@ The URL of the deployed application
 
 The URL of the GitHub repository that contains your code.
 
-
+https://github.com/pzhong1/team-project1.git
 
  ## User Story  
 
