@@ -1,0 +1,41 @@
+body {
+    margin: 0; /* remove the default setting*/
+    padding: 0;/* remove the default setting*/
+}
+
+#homepage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Use min-height instead of height */
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+#homepage h1{
+    color: black
+}
+
+header {
+    text-align: center; /*styling my text ' Ready to travel' in the center of the page*/
+    background-color: bisque;
+    padding-top: 10px; /*style my background-color will fit my header 100% */
+}
+
+#background-image {
+    position: absolute; /* Set the position to absolute */
+    height: 100%;
+    width: 100%;
+    z-index: -1; /* Set a negative z-index to move it behind the content */
+}
+
+#background-image img {
+    object-fit: cover; /* Use object-fit to ensure the image covers the entire container */
+    object-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+
+
