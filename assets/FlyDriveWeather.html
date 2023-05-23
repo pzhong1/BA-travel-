@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fly and Drive</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="weather-info"></div> <!-- this empty div will display 5days weather after user enter city name -->
+
+  <div id="buttons-container">
+    <button id="fly-btn">Fly</button> <!--button for Fly info-->
+    <button id="drive-btn">Drive</button> <!--button for Drive info-->
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> 
+  <script src="./script.js"></script>
+
+
+  <!--internal js for weather API-->
+  <script> 
+    // This script will load the weather information from localStorage when the page loads // i did not create a js file  for FlyDrive.html thats why im put the code here
+    $(document).ready(function() { // make sure all the html code is fully loaded before running any other js code
+      var weatherInfo = localStorage.getItem('weatherInfo');// store the weather info and sign to wearher info
+      if (weatherInfo) { // use if statment to check if the weather info has a value or not, if has a value then save the weather infomtaion to local storage
+        $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
+      }
+    });
+  </script>
+  
+</body>
+</html>
