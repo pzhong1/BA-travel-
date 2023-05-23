@@ -1,7 +1,7 @@
  ## Team Project1 (Hector Ibarra,  puze zhong,  Raquel T,  Sarah Squyres,  tyler johnson)  
 
 The URL of the deployed application  
-https://pzhong1.github.io/team-project1/
+
 
 
 The URL of the GitHub repository that contains your code.
