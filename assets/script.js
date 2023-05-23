@@ -40,7 +40,7 @@ $(document).ready(function () { // using ready() method to warp all the codes to
 
         // set time when i click the search button at home page then it will take i sec and then load to the other page 
         setTimeout(function () {
-          window.location.href = './assets/FlydriveWeather.html';
+          window.location.href = './FlyDriveWeather.html';
         }, 100);  //100 = 1sec
       },// closing success 
 
