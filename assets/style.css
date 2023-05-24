@@ -13,14 +13,16 @@ body {
     background-position: center;
 }
 
-#homepage h1{
-    color: black
-}
 
 header {
-    text-align: center; /*styling my text ' Ready to travel' in the center of the page*/
+    height: 50px;
+     /*styling my text ' Ready to travel' in the center of the page*/
     
      /*style my background-color will fit my header 100% */
+}
+header h1{
+    
+    font-family: 'Shrikhand', cursive;
 }
 
 #background-image {
@@ -37,5 +39,6 @@ header {
     width: 100%;
 }
 
-
-
+#search-container h1{
+    font-family: 'Shrikhand', cursive;
+}
