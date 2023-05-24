@@ -5,14 +5,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fly and Drive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <div id="weather-info"></div> <!-- this empty div will display 5days weather after user enter city name -->
 
   <div id="buttons-container">
-    <button id="fly-btn">Fly</button> <!--button for Fly info-->
-    <button id="drive-btn">Drive</button> <!--button for Drive info-->
+    <button id="fly-btn" class="bg-blue-500 hover:bg-blue-400 text-white font-bold 
+    py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Fly</button> <!--button for Fly info-->
+    <button id="drive-btn" class="bg-blue-500 hover:bg-blue-400 text-white font-bold 
+    py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Drive</button> <!--button for Drive info-->
   </div>
 
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> 

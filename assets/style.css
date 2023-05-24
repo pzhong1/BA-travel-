@@ -19,8 +19,8 @@ body {
 
 header {
     text-align: center; /*styling my text ' Ready to travel' in the center of the page*/
-    background-color: bisque;
-    padding-top: 10px; /*style my background-color will fit my header 100% */
+    
+     /*style my background-color will fit my header 100% */
 }
 
 #background-image {
