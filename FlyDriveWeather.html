@@ -6,20 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fly and Drive</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-blue-200">
-  <header class="bg-blue-600">
-
+<body class="background-topo"class="bg-sky-200">
+  <header class="bg-blue-600 flex">
+    <h1 id=" heading"class="text-3xl text-white flex justify-center ">BA Travel: Ready to roam?</h1>
   </header>
   <div id="weather-info"></div> <!-- this empty div will display 5days weather after user enter city name -->
 <div class="">
-  <div id="buttons-container">
-    <button id="fly-btn" class="bg-blue-500 hover:bg-blue-400 text-white font-bold 
-    py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Fly</button> <!--button for Fly info-->
+  <div id="buttons-container" class="flex justify-center flex justify-around mt-100">
+    <button id="fly-btn" class=" bg-blue-500 hover:bg-blue-400 text-white font-bold 
+    py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 transform hover:scale-125 rounded">Fly</button> <!--button for Fly info-->
     <button id="drive-btn" class="bg-blue-500 hover:bg-blue-400 text-white font-bold 
-    py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Drive</button> <!--button for Drive info-->
+    py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 transform hover:scale-125 rounded">Drive</button> <!--button for Drive info-->
   </div>
 </div>
  
