@@ -2,40 +2,7 @@
 
 $(document).ready(function () { // using ready() method to warp all the codes to make sure the HTML is fully loaded before running any other codes 
   var apiKey = "e9fca33cb368be842d7fa15031d8b7e5"; // puze zhong's openweather API key for weather info
-  var APIKey = "TnY7dgkAkdBckSWhls81z22VTZLosfGM"; // Sarah's Amadeus API key for travel info
-  var SECRET_KEY = '294cZnBTO3GbEjQS'
-  function loadFlights(city) {
-    var travelApiUrl = "https://test.api.amadeus.com/v2/shopping/flight-offers?currencyCode=USD&originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2023-05-30&adults=1&nonStop=false&max=10"
-    // SYD&destinationLocationCode=BKK&departureDate=2023-05-02&adults=1&nonStop=false&max=250
-    var securityUrl = `https://test.api.amadeus.com/v1/security/oauth2/token`;
-    fetch(securityUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: `grant_type=client_credentials&client_id=${APIKey}&client_secret=${SECRET_KEY}`
-    }).then(function (response) {
-      return response.json();
-    }).then(function (data) {
-      console.log(data);
-      var token = data.access_token;
-      fetch(travelApiUrl, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          console.log(data);
-        });
-
-    });
-
-  }
-
-  loadFlights('');
+  
 
   function loadData(city) {
     var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;// openweather webside  this is for when user enter city then the server side API will display the weather info, it require personal API key which i included above
@@ -87,6 +54,12 @@ $(document).ready(function () { // using ready() method to warp all the codes to
   } // closing loadData()
 
 
+  var weatherInfo = localStorage.getItem('weatherInfo');// store the weather info and sign to wearher info
+  if (weatherInfo) { // use if statment to check if the weather info has a value or not, if has a value then save the weather infomtaion to local storage
+     $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
+ }
+
+ // click function for  search button//////////////
   $('#search-btn').click(function (event) { // click function that link to id search-btn 
     event.preventDefault();
     console.log("Button clicked"); // im just testing make sure my click function is working //after testing it is working 
@@ -96,7 +69,13 @@ $(document).ready(function () { // using ready() method to warp all the codes to
     }// closing if statement
   }); // closing click fucntion
 
+
+
+
   ///////////////  END OF OpenWeather API ///////////////////////////////
+
+
+
 
 
 
