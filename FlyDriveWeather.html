@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fly and Drive</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="./assets/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/f9b2c738a6.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="./assets/style.css">
 </head>
 
 <body class="background-topo"class="bg-sky-200">
@@ -24,6 +26,13 @@
 </div> 
   <div class="flex justify-center">
     <span id="question" class="mt-5 bg-blue-600 rounded-2xl pl-10 pr-10 pb-2 pt-2 text-slate-100 ">How would you like to get there?</span>
+    <div id="buttons-container">
+      <a href="./flightInfo.html"><button id="fly-btn"><i class="fa-solid fa-plane-departure"></i>Fly</button></a> <!--button for Fly info-->
+      <!--<i class="fa-solid fa-plane-departure"></i> this can find at fontawesome.com-->
+      <button id="drive-btn"><i class="fa-solid fa-map-location-dot"></i>Drive</button> <!--button for Drive info-->
+      <button id="back-btn"><a href="./index.html"><i class="fa-solid fa-backward"></i>Back</a></button>
+      <!--button for go back-->
+    </div>
   </div>
   
 
@@ -49,21 +58,13 @@
 
  
 
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> 
-  <script src="./script.js"></script>
+ 
 
 
-  <!--internal js for weather API-->
-  <script> 
-    // This script will load the weather information from localStorage when the page loads // i did not create a js file  for FlyDrive.html thats why im put the code here
-    $(document).ready(function() { // make sure all the html code is fully loaded before running any other js code
-      var weatherInfo = localStorage.getItem('weatherInfo');// store the weather info and sign to wearher info
-      if (weatherInfo) { // use if statment to check if the weather info has a value or not, if has a value then save the weather infomtaion to local storage
-        $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
-      }
-    });
-  </script>
-  
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="./assets/script.js"></script>
+
+
 </body>
-</html>
 
+</html>
