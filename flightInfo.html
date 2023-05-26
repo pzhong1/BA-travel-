@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flightInfo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./assets/style.css">
+  <!-- this is for style icon for buttons  this URL can find at https://fontawesome.com/ -->
+  <script src="https://kit.fontawesome.com/f9b2c738a6.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+
+  <div id="flightModal" class="modal">
+
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Enter flight details</h2>
+      <form id="flight-form">
+        <label for="departure-input">Departure city:</label><br>
+        <input type="text" id="departure-input" name="departure-input"><br>
+        <label for="destination-input">Destination city:</label><br>
+        <input type="text" id="destination-input" name="destination-input"><br>
+        <label for="departure-date-input">Departure date:</label><br>
+        <input type="date" id="departure-date-input" name="departure-date-input"><br>
+        <button type="button" id="confirm-btn">Confirm</button>
+        <button> <a href="./FlyDriveWeather.html"> <i class="fa-solid fa-backward"></i>Back</button></a>
+      </form>
+
+
+
+
+
+      </form>
+    </div>
+  </div>
+
+  <div id="flights-info"></div>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> <!--jquery link-->
+  <script src="./assets/flightScript.js"></script>
+
+</body>
+
+</html>
