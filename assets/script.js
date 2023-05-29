@@ -2,18 +2,20 @@
 
 $(document).ready(function () { // using ready() method to warp all the codes to make sure the HTML is fully loaded before running any other codes 
   var apiKey = "e9fca33cb368be842d7fa15031d8b7e5"; // puze zhong's openweather API key for weather info
-  
+
 
   function loadData(city) {
     var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;// openweather webside  this is for when user enter city then the server side API will display the weather info, it require personal API key which i included above
 
-    $.ajax({ // im using this function becuase it it can exchange data with a server, update parts of the page without reloading the whole page.
-      url: weatherApiUrl, // set URL to request weatherApiurl to captch data
-      method: 'GET', //i need use GET method to request data from weather URL
-      success: function (answer) { // Set a function that will be called when the request succeeds
-
-
-
+    fetch(weatherApiUrl)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Error: ' + response.statusText);
+        }
+      })
+      .then(answer => {
         // creat a HTML string(h2) this is use to display weather infomation 
         var weatherInfoHtml = '<h2>Weather for ' + city + '</h2>'; // weather for any city that user entered  will display at FlyDrvie page 
 
@@ -42,24 +44,16 @@ $(document).ready(function () { // using ready() method to warp all the codes to
         setTimeout(function () {
           window.location.href = './FlyDriveWeather.html';
         }, 100);  //100 = 1sec
-      },// closing success 
-
-
-      error: function (error) { // if the ajax function fails then return error
-        console.log('Error:', error); // will need inspect if i want test my code and see this console.log msg
-      }// closing error()
-
-    });//closing ajax()
-
-  } // closing loadData()
-
+      })
+      .catch(error => console.log('Error: ', error));
+  }
 
   var weatherInfo = localStorage.getItem('weatherInfo');// store the weather info and sign to wearher info
   if (weatherInfo) { // use if statment to check if the weather info has a value or not, if has a value then save the weather infomtaion to local storage
-     $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
- }
+    $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
+  }
 
- // click function for  search button//////////////
+  // click function for  search button//////////////
   $('#search-btn').click(function (event) { // click function that link to id search-btn 
     event.preventDefault();
     console.log("Button clicked"); // im just testing make sure my click function is working //after testing it is working 
@@ -68,21 +62,6 @@ $(document).ready(function () { // using ready() method to warp all the codes to
       loadData(city); // Call your function here
     }// closing if statement
   }); // closing click fucntion
-
-
-
-
-  ///////////////  END OF OpenWeather API ///////////////////////////////
-
-
-
-
-
-
-
-
-
-
 
 
 });// closing ready() method
