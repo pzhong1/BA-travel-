@@ -7,42 +7,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>flightInfo</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/style.css">
   <!-- this is for style icon for buttons  this URL can find at https://fontawesome.com/ -->
   <script src="https://kit.fontawesome.com/f9b2c738a6.js" crossorigin="anonymous"></script>
+  <style>
+    .loading {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
+
+    .modal-content {
+      position: relative;
+    }
+    
+    .modal-image {
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - 200px); /* Adjust the value as needed */
+      object-fit: cover;
+    }
+    
+    #flight-form {
+      margin-top: 16px;
+      max-width: 400px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .flights-info {
+      margin-top: 16px;
+    }
+  </style>
+
 
 </head>
 
-<body>
+<body class="background-cloud">
+  <header class="bg-blue-600 flex">
+    <h1 id=" heading"class="text-white">BA Travel: Ready to roam?</h1>
+  </header>
 
 
   <div id="flightModal" class="modal">
 
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Enter flight details</h2>
-      <form id="flight-form">
-        <label for="departure-input">Departure city:</label><br>
-        <input type="text" id="departure-input" name="departure-input"><br>
-        <label for="destination-input">Destination city:</label><br>
-        <input type="text" id="destination-input" name="destination-input"><br>
-        <label for="departure-date-input">Departure date:</label><br>
-        <input type="date" id="departure-date-input" name="departure-date-input"><br>
-        <button type="button" id="confirm-btn">Confirm</button>
-        <button> <a href="./FlyDriveWeather.html"> <i class="fa-solid fa-backward"></i>Back</button></a>
-      </form>
-
-
-
-
-
+      <img src="assets/img/jason-leung-SvdOOFYjs-Y-unsplash.jpg" alt="airplane wing in clouds" class="modal-image">
+      <div class="absolute inset-0 flex flex-col justify-center items-center">
+        <!-- <span class="close">&times;</span> -->
+      <!-- <h2 class="text-2xl mb-4 text-center bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg">Enter flight details</h2> -->
+      <form id="flight-form" class="flex flex-col items-center bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg p-8 rounded">
+        <p class="text-2xl mb-4 text-center">Enter flight details</p>
+        <label for="departure-input"></label><br>
+        <input type="text" id="departure-input" placeholder="Departure city" name="departure-input" class="border-blue-500 border-2">
+        <label for="destination-input"></label><br>
+        <input type="text" id="destination-input" placeholder="Destination city" name="destination-input" class="border-blue-500 border-2"><br>
+        <label for="departure-date-input">Departure date:</label>
+        <input type="date" id="departure-date-input" name="departure-date-input" class="border-blue-500 border-2"><br>
+        
+        <div class="flex justify-center">
+          <button type="button" id="confirm-btn" class="mr-2 bg-blue-500 hover:bg-blue-400 text-white font-bold 
+          w-32 py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 transform hover:scale-125 rounded">Confirm</button>
+          <button class="ml-2 bg-blue-500 hover:bg-blue-400 text-white font-bold 
+          w-32 py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 transform hover:scale-125 rounded">
+            <a href="./FlyDriveWeather.html">
+              <i class="fa-solid fa-backward"></i>Back
+            </a>
+          </button>
+        </div>
+        <div class="flex justify-center mt-2">
+          <button type="reset" class="px-4 py-2 bg-red-500 hover:bg-red-400 text-white font-bold rounded" >
+            Reset
+          </button>
+        </div>
       </form>
     </div>
   </div>
+</div>
+  
 
   <div id="flights-info"></div>
+
+  <div id="loading" class="loading">
+    <div class="text-white">Loading...</div>
+
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> <!--jquery link-->
   <script src="./assets/flightScript.js"></script>
+  <script>
+    const confirmBtn = document.getElementById("confirm-btn");
+    const loading = document.getElementById("loading");
+    
+    confirmBtn.addEventListener("click", function () {
+      loading.style.display = "flex";
+  
+  // Simulating a delay for demonstration purposes
+  setTimeout(function () {
+    // Code to display the content goes here
+    
+    // Once the content is displayed, hide the loading screen
+    loading.style.display = "none";
+  }, 2000); // Adjust the delay time as needed                                                                   
+});
+  </script>
 
 </body>
 
