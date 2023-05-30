@@ -2,23 +2,26 @@
 
 $(document).ready(function () { // using ready() method to warp all the codes to make sure the HTML is fully loaded before running any other codes 
   var apiKey = "e9fca33cb368be842d7fa15031d8b7e5"; // puze zhong's openweather API key for weather info
-  
+
 
   function loadData(city) {
     var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;// openweather webside  this is for when user enter city then the server side API will display the weather info, it require personal API key which i included above
 
-    $.ajax({ // im using this function becuase it it can exchange data with a server, update parts of the page without reloading the whole page.
-      url: weatherApiUrl, // set URL to request weatherApiurl to captch data
-      method: 'GET', //i need use GET method to request data from weather URL
-      success: function (answer) { // Set a function that will be called when the request succeeds
+    fetch(weatherApiUrl)
+      .then(response => {
+        if (response => ok) {
+          return response.json();
+        } else {
+          throw new Error('Error: ' + response.statusText);
+        }
+      }) //close fetch
 
 
-
-        // creat a HTML string(h2) this is use to display weather infomation 
+      .then(answer => {
         var weatherInfoHtml = '<h2>Weather for ' + city + '</h2>'; // weather for any city that user entered  will display at FlyDrvie page 
 
-        for (var i = 0; i < answer.list.length; i += 7) { // for loop  i have 5 days weather so i set i += 7 so the code for weather only display only once
-          var date = new Date(answer.list[i].dt * 1000);  // .dt(data receiving time)  *1000 to obtain timestamp to date format
+        for (var i = 0; i < answer.list.length; i +=8) { // for loop  i have 5 days weather so i set i += 8 so the code for weather only display only once
+          var date = new Date(answer.list[i].dt * 1000);
           var temperatureC = answer.list[i].main.temp - 273.15;  //-273.15 so i can get Celsius
           var temperatureF = temperatureC * 9 / 5 + 32;// use this formula to change to from C to Fahrenheit
           var weatherDescription = answer.list[i].weather[0].description;// description for weather infomation
@@ -42,47 +45,28 @@ $(document).ready(function () { // using ready() method to warp all the codes to
         setTimeout(function () {
           window.location.href = './FlyDriveWeather.html';
         }, 100);  //100 = 1sec
-      },// closing success 
+      })
+      .catch(error => console.log('Error: ', error));
 
-
-      error: function (error) { // if the ajax function fails then return error
-        console.log('Error:', error); // will need inspect if i want test my code and see this console.log msg
-      }// closing error()
-
-    });//closing ajax()
-
-  } // closing loadData()
-
-
-  var weatherInfo = localStorage.getItem('weatherInfo');// store the weather info and sign to wearher info
-  if (weatherInfo) { // use if statment to check if the weather info has a value or not, if has a value then save the weather infomtaion to local storage
-     $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
- }
-
- // click function for  search button//////////////
-  $('#search-btn').click(function (event) { // click function that link to id search-btn 
-    event.preventDefault();
-    console.log("Button clicked"); // im just testing make sure my click function is working //after testing it is working 
-    var city = $('#city-input').val(); // add val() method to id city-input and gave it a var name city so when input random city the brower will remember the cityName  user just entered
-    if (city !== "") { // city input can't not be empty. if is not empty then call the function loadData
-      loadData(city); // Call your function here
-    }// closing if statement
-  }); // closing click fucntion
+  }// close function loadData
 
 
 
 
-  ///////////////  END OF OpenWeather API ///////////////////////////////
+var weatherInfo = localStorage.getItem('weatherInfo');// store the weather info and sign to wearher info
+if (weatherInfo) { // use if statment to check if the weather info has a value or not, if has a value then save the weather infomtaion to local storage
+  $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
+}
 
-
-
-
-
-
-
-
-
-
+// click function for  search button//////////////
+$('#search-btn').click(function (event) { // click function that link to id search-btn 
+  event.preventDefault();
+  console.log("Button clicked"); // im just testing make sure my click function is working //after testing it is working 
+  var city = $('#city-input').val(); // add val() method to id city-input and gave it a var name city so when input random city the brower will remember the cityName  user just entered
+  if (city !== "") { // city input can't not be empty. if is not empty then call the function loadData
+    loadData(city); // Call your function here
+  }// closing if statement
+}); // closing click fucntion
 
 
 });// closing ready() method

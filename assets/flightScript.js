@@ -29,7 +29,7 @@ $(document).ready(function () {
           .then(function (data) {
             console.log(data);
   
-            var flightsInfoHtml = '<h2>Flights information for ' + destinationCity + '</h2>';
+            var flightsInfoHtml = '<h2 style="font-weight: bold; font-size: 24px; text-align: center;">Flights information for ' + destinationCity + '</h2>';
   
             if (data && data.data) {
               for (var i = 0; i < data.data.length; i++) {
@@ -37,7 +37,7 @@ $(document).ready(function () {
                 var firstSegment = itinerary.segments[0];
                 var lastSegment = itinerary.segments[itinerary.segments.length - 1];
               
-                flightsInfoHtml += '<div style="margin-bottom:20px;padding:10px;border:1px solid #ddd;border-radius:10px;">';
+                flightsInfoHtml += '<div style="margin-bottom:20px;padding:10px;border:1px solid #ddd;border-radius:10px;background-color:rgba(255, 255, 255, 0.5);">';
                 flightsInfoHtml += '<h3 style="margin-bottom:10px;color:#333;">Flight ' + (i + 1) + '</h3>';
                 flightsInfoHtml += '<p style="margin-bottom:5px;"><strong>Departure:</strong> ' + firstSegment.departure.iataCode + ' at ' + new Date(firstSegment.departure.at).toLocaleString() + '</p>';
                 flightsInfoHtml += '<p style="margin-bottom:5px;"><strong>Arrival:</strong> ' + lastSegment.arrival.iataCode + ' at ' + new Date(lastSegment.arrival.at).toLocaleString() + '</p>';
