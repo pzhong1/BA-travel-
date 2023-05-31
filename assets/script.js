@@ -18,7 +18,7 @@ $(document).ready(function () { // using ready() method to warp all the codes to
 
 
       .then(answer => {
-        var weatherInfoHtml = '<h2>Weather for ' + city + '</h2>'; // weather for any city that user entered  will display at FlyDrvie page 
+        var weatherInfoHtml = "<div>"; '<h2>Weather for ' + city + '</h2>'; // weather for any city that user entered  will display at FlyDrvie page 
 
         for (var i = 0; i < answer.list.length; i +=8) { // for loop  i have 5 days weather so i set i += 8 so the code for weather only display only once
           var date = new Date(answer.list[i].dt * 1000);
@@ -34,7 +34,7 @@ $(document).ready(function () { // using ready() method to warp all the codes to
 
           weatherInfoHtml += '<h3>' + date.toLocaleDateString() + '</h3>'; //create a h3 element and add the data info for display in web page and use toLocalDateString() to formatted the date information
           weatherInfoHtml += '<p>Temperature: ' + temperatureF.toFixed(0) + '°F' + weatherIconHtml + '</p>'; // temperature info will display in F  and i set tofix(0) so i can get a whole nume for temperture  in stead of getting any decimal  
-          weatherInfoHtml += '<p>Weather status: ' + weatherDescription + '</p>'; // create a p element for weather status  display 
+          weatherInfoHtml += '<p>Weather status: ' + weatherDescription + '</p>'; "</div>"; // create a p element for weather status  display 
         } //for loop
 
         $('#weather-info').html(weatherInfoHtml);

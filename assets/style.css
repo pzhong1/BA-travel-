@@ -114,7 +114,10 @@ button {
     text-align: center;
 }
 
-#weather-info{
+#weather-info div{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
     font-family: 'Shrikhand', cursive;
 }
 .background-topo {
