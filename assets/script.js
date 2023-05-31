@@ -61,6 +61,8 @@ if (weatherInfo) { // use if statment to check if the weather info has a value o
 // click function for  search button//////////////
 $('#search-btn').click(function (event) { // click function that link to id search-btn 
   event.preventDefault();
+  var destination = $('#city-input').val();
+  localStorage.setItem('destination', destination);
   console.log("Button clicked"); // im just testing make sure my click function is working //after testing it is working 
   var city = $('#city-input').val(); // add val() method to id city-input and gave it a var name city so when input random city the brower will remember the cityName  user just entered
   if (city !== "") { // city input can't not be empty. if is not empty then call the function loadData
