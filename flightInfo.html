@@ -28,41 +28,51 @@
   <div id="flightModal" class="modal">
 
     <div class="modal-content">
-      <img src="assets/img/jason-leung-SvdOOFYjs-Y-unsplash.jpg" alt="airplane wing in clouds" class="modal-image" width="800" height="600" loading="lazy">
-      <div class="absolute inset-0 flex flex-col justify-center items-center">
+      <img src="assets/img/jason-leung-SvdOOFYjs-Y-unsplash.jpg" alt="airplane wing in clouds" class="modal-image auto object-cover" loading="lazy">
+      <div class="mt-10 absolute inset-0 flex flex-col justify-center items-center">
         <!-- <span class="close">&times;</span> -->
-      <!-- <h2 class="text-2xl mb-4 text-center bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg">Enter flight details</h2> -->
-      <form id="flight-form" class="flex flex-col items-center bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg p-8 rounded">
-        <p id="flightDeets"class="text-2xl mb-4 text-center">Enter flight details</p>
-        <a href="https://www.air-port-codes.com/" target="_blank" class="text-blue-500 underline" title="To search the city Airport code, please click me to populate a new tab.">
-          Airport Codes
-        </a>
-        <label for="departure-input"></label><br>
-        <input type="text" id="departure-input" placeholder="Departure City" name="departure-input" class="border-blue-500 border-2">
-        <label for="destination-input"></label><br>
-        <input type="text" id="destination-input" placeholder="Destination City" name="destination-input" class="border-blue-500 border-2"><br>
-        <label for="departure-date-input" id="departDate">Departure date:</label>
-        <input type="date" id="departure-date-input" name="departure-date-input" class="border-blue-500 border-2"><br>
-        
-        <div class="flex justify-center">
-          <button type="button" id="confirm-btn" class="mr-2 bg-blue-500 hover:bg-blue-400 text-white font-bold 
-          w-32 py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 transform hover:scale-125 rounded">Confirm</button>
-          <button class="ml-2 bg-blue-500 hover:bg-blue-400 text-white font-bold 
-          w-32 py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 transform hover:scale-125 rounded">
-            <a href="./FlyDriveWeather.html">
-              <i class="fa-solid fa-backward"></i>Back
-            </a>
-          </button>
-        </div>
-        <div class="flex justify-center mt-2">
-          <button type="reset" class="px-4 py-2 bg-red-500 hover:bg-red-400 text-white font-bold rounded" >
-            Reset
-          </button>
-        </div>
-      </form>
+        <!-- <h2 class="text-2xl mb-4 text-center bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg">Enter flight details</h2> -->
+        <form id="flight-form" class="flex flex-col items-center bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg p-8 rounded">
+          <p id="flightDeets" class="text-2xl mb-4 text-center">Enter flight details</p>
+          <a href="https://www.air-port-codes.com/" target="_blank" class="text-blue-500 underline">
+            Airport Codes
+          </a>
+          <div class="input-container">
+            <label for="departure-input"></label><br>
+            <input type="text" id="departure-input" placeholder="Departure City" name="departure-input" class=" w-full border-blue-500 border-2" title="Airport Code needed. To search the City Airport code, please click link above and a new tab will populate.">
+          </div>
+          <div class="input-container">
+            <label for="destination-input"></label><br>
+            <input type="text" id="destination-input" placeholder="Destination City" name="destination-input" class="border-blue-500 border-2 w-full"><br>
+          </div>
+          <div class="input-container flex flex-col items-center"><br>
+            <label for="departure-date-input" id="departDate">Departure date:</label><br>
+            <input type="date" id="departure-date-input" name="departure-date-input" class=" w-full border-blue-500 border-2"><br>
+          </div>
+
+          <div class="w-full flex flex-col md:flex-row justify-center md:justify-between content-center items-center my-7 desktop-spacing">
+            <div class="button-container mt-2 md:mt-0 w-full flex content-center items-center justify-center"><br>
+              <button type="button" id="confirm-btn" class=" mobile-button bg-blue-500 hover:bg-blue-400 text-white font-bold 
+          py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 transform hover:scale-125 rounded">Confirm</button>
+            </div>
+            <div class="button-container mt-2 md:mt-0 w-full flex content-center items-center justify-center"><br>
+              <button class="mobile-button bg-blue-500 hover:bg-blue-400 text-white font-bold 
+          py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 transform hover:scale-125 rounded" id="back-btn">
+                <a href="./FlyDriveWeather.html">
+                  <i class="fa-solid fa-backward"></i> Back
+                </a>
+              </button>
+            </div>
+          </div>
+          <div class="flex justify-center mt-2 w-full"><br>
+            <button type="reset" class="mobile-button px-4 py-2 bg-red-500 hover:bg-red-400 text-white font-bold rounded w-1/2">
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
   
   
   <div id="flights-info"></div><!--this DIV is where the flight info will be populated-->
@@ -85,7 +95,7 @@
     
     // Once the content is displayed, hide the loading screen
     loading.style.display = "none";
-  }, 2000); // Adjust the delay time as needed                                                                   
+  }, 3000); // Adjust the delay time as needed                                                                   
 });
   </script>
 
