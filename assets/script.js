@@ -18,7 +18,7 @@ $(document).ready(function () { // using ready() method to warp all the codes to
 
 
       .then(answer => {
-        var weatherInfoHtml = "<div>"; '<h2>Weather for ' + city + '</h2>'; // weather for any city that user entered  will display at FlyDrvie page 
+        var weatherInfoHtml = "<div><h2>Weather for " + city + "</h2><div class='forecast-container'>"; // weather for any city that user entered  will display at FlyDrvie page 
 
         for (var i = 0; i < answer.list.length; i +=8) { // for loop  i have 5 days weather so i set i += 8 so the code for weather only display only once
           var date = new Date(answer.list[i].dt * 1000);
@@ -26,7 +26,7 @@ $(document).ready(function () { // using ready() method to warp all the codes to
           var temperatureF = temperatureC * 9 / 5 + 32;// use this formula to change to from C to Fahrenheit
           var weatherDescription = answer.list[i].weather[0].description;// description for weather infomation
           var weatherIcon = answer.list[i].weather[0].icon; // Get the weather icon ID
-
+          weatherInfoHtml += "<div class='forecast'>";
           // Create the image element for the weather icon // this url is found at "openweathermap.org/weather-conditions" website 
           var weatherIconUrl = "http://openweathermap.org/img/wn/" + weatherIcon + ".png"; // create a icon for weather status // https://openweathermap.org/weather-conditions this is icon webURL and then i want my icon display in .png
           var weatherIconHtml = '<img src="' + weatherIconUrl + '" alt="' + weatherDescription + '">';// insert the icon
@@ -34,9 +34,15 @@ $(document).ready(function () { // using ready() method to warp all the codes to
 
           weatherInfoHtml += '<h3>' + date.toLocaleDateString() + '</h3>'; //create a h3 element and add the data info for display in web page and use toLocalDateString() to formatted the date information
           weatherInfoHtml += '<p>Temperature: ' + temperatureF.toFixed(0) + '°F' + weatherIconHtml + '</p>'; // temperature info will display in F  and i set tofix(0) so i can get a whole nume for temperture  in stead of getting any decimal  
-          weatherInfoHtml += '<p>Weather status: ' + weatherDescription + '</p>'; "</div>"; // create a p element for weather status  display 
-        } //for loop
+          weatherInfoHtml += '<p>Weather status: ' + weatherDescription + '</p>'; 
+          weatherInfoHtml += "</div>"; // create a p element for weather status  display 
 
+          // We could have instead dynamically created, added attributes, text, etc ... then Appended each to the DOM
+         // var tempEl = document.createElement("div");
+         // tempEl.classList.add('forecast-container');
+        } //for loop
+        weatherInfoHtml += "</div></div>";
+        // Here we are attaching our Dynamic Created Content to the DOM (id='weather-info' element) 
         $('#weather-info').html(weatherInfoHtml);
         localStorage.setItem('weatherInfo', weatherInfoHtml);// stores the weather information HTML  in the browser local storage so the info will display when page is load
 

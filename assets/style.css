@@ -114,11 +114,25 @@ button {
     text-align: center;
 }
 
-#weather-info div{
+/*
+#weather-info div {
     display: flex;
     flex-wrap:wrap;
     justify-content: space-around;
     font-family: 'Shrikhand', cursive;
+}
+*/
+#weather-info {
+  /*  display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    */
+    font-family: 'Shrikhand', cursive;
+}
+
+.forecast-container {
+    display: flex;
+    justify-content: space-around;
 }
 
 .loading {
@@ -218,6 +232,9 @@ button {
      }
      .modal-image{
         margin-top: 200px;
+     }
+     .forecast-container{
+        display:block;
      }
 }
 
