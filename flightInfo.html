@@ -20,74 +20,116 @@
 <body class="background-cloud">
   <header class="bg-blue-600 flex">
     <a href="index.html">
-      <h1 id=" heading"class="pl-6 text-white">BA Travel: Ready to roam?</h1>
+      <h1 id=" heading" class="pl-6 text-white">BA Travel: Ready to roam?</h1>
     </a>
   </header>
-  
+
 
   <div id="flightModal" class="modal">
 
     <div class="modal-content">
-      <img src="assets/img/jason-leung-SvdOOFYjs-Y-unsplash.jpg" alt="airplane wing in clouds" class="modal-image" width="800" height="600" loading="lazy">
+      <img src="assets/img/jason-leung-SvdOOFYjs-Y-unsplash.jpg" alt="airplane wing in clouds" class="modal-image"
+        width="800" height="600" loading="lazy">
       <div class="absolute inset-0 flex flex-col justify-center items-center">
         <!-- <span class="close">&times;</span> -->
-      <!-- <h2 class="text-2xl mb-4 text-center bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg">Enter flight details</h2> -->
-      <form id="flight-form" class="flex flex-col items-center bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg p-8 rounded">
-        <p id="flightDeets"class="text-2xl mb-4 text-center">Enter flight details</p>
-        <a href="https://www.air-port-codes.com/" target="_blank" class="text-blue-500 underline" title="To search the city Airport code, please click me to populate a new tab.">
-          Airport Codes
-        </a>
-        <label for="departure-input"></label><br>
-        <input type="text" id="departure-input" placeholder="Departure City" name="departure-input" class="border-blue-500 border-2">
-        <label for="destination-input"></label><br>
-        <input type="text" id="destination-input" placeholder="Destination City" name="destination-input" class="border-blue-500 border-2"><br>
-        <label for="departure-date-input" id="departDate">Departure date:</label>
-        <input type="date" id="departure-date-input" name="departure-date-input" class="border-blue-500 border-2"><br>
-        
-        <div class="flex justify-center">
-          <button type="button" id="confirm-btn" class="mr-2 bg-blue-500 hover:bg-blue-400 text-white font-bold 
+        <!-- <h2 class="text-2xl mb-4 text-center bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg">Enter flight details</h2> -->
+        <form id="flight-form"
+          class="flex flex-col items-center bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg p-8 rounded">
+          <p id="flightDeets" class="text-2xl mb-4 text-center">Enter flight details</p>
+          <a href="https://www.air-port-codes.com/" target="_blank" class="text-blue-500 underline"
+            title="To search the city Airport code, please click me to populate a new tab.">
+            Airport Codes
+          </a>
+          <label for="departure-input"></label><br>
+          <input type="text" id="departure-input" placeholder="Departure City" name="departure-input"
+            class="border-blue-500 border-2">
+          <label for="destination-input"></label><br>
+          <input type="text" id="destination-input" placeholder="Destination City" name="destination-input"
+            class="border-blue-500 border-2"><br>
+          <label for="departure-date-input" id="departDate">Departure date:</label>
+          <input type="date" id="departure-date-input" name="departure-date-input" class="border-blue-500 border-2"><br>
+
+          <div class="flex justify-center">
+            <button type="button" id="confirm-btn"
+              class="mr-2 bg-blue-500 hover:bg-blue-400 text-white font-bold 
           w-32 py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 transform hover:scale-125 rounded">Confirm</button>
-          <button class="ml-2 bg-blue-500 hover:bg-blue-400 text-white font-bold 
+            <button class="ml-2 bg-blue-500 hover:bg-blue-400 text-white font-bold 
           w-32 py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 transform hover:scale-125 rounded">
-            <a href="./FlyDriveWeather.html">
-              <i class="fa-solid fa-backward"></i>Back
-            </a>
-          </button>
-        </div>
-        <div class="flex justify-center mt-2">
-          <button type="reset" class="px-4 py-2 bg-red-500 hover:bg-red-400 text-white font-bold rounded" >
-            Reset
-          </button>
-        </div>
-      </form>
+              <a href="./FlyDriveWeather.html">
+                <i class="fa-solid fa-backward"></i>Back
+              </a>
+            </button>
+          </div>
+          <div class="flex justify-center mt-2">
+            <button type="reset" class="px-4 py-2 bg-red-500 hover:bg-red-400 text-white font-bold rounded">
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-  
-  
+
+
+
+
+
+  <!--tailwind css elemetns for style my hide and show msg. find at https://tailwindcss.com/ -->
+  <div id="error-modal" class="fixed z-10 inset-0" style="display: none;">
+    <div class="flex items-center justify-center min-h-screen text-center sm:block sm:p-0">
+      <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+        <div class="absolute inset-0 bg-gray-400 opacity-75"></div>
+      </div>
+
+      <div
+        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+        role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        <div class="bg-white  sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class=" text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg leading-6 font-medium text-red-700">Error </h3>
+              <div class="mt-2">
+                <p class="text-sm text-blue-700" id="error-text"></p><!--this is for display erroe msg-->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button type="button"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+            id="ok-btn-modal"> Ok </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
   <div id="flights-info"></div><!--this DIV is where the flight info will be populated-->
 
   <div id="loading" class="loading">
     <div class="text-white">Loading...</div>
 
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> <!--jquery link-->
-  <script src="./assets/flightScript.js"></script>
-  <script>
-    const confirmBtn = document.getElementById("confirm-btn");
-    const loading = document.getElementById("loading");
-    
-    confirmBtn.addEventListener("click", function () {
-      loading.style.display = "flex";
-  
-  // Simulating a delay for demonstration purposes
-  setTimeout(function () {
-    // Code to display the content goes here
-    
-    // Once the content is displayed, hide the loading screen
-    loading.style.display = "none";
-  }, 2000); // Adjust the delay time as needed                                                                   
-});
-  </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> <!--jquery link-->
+    <script src="./assets/flightScript.js"></script>
+    <script>
+      const confirmBtn = document.getElementById("confirm-btn");
+      const loading = document.getElementById("loading");
+
+      confirmBtn.addEventListener("click", function () {
+        loading.style.display = "flex";
+
+        // Simulating a delay for demonstration purposes
+        setTimeout(function () {
+          // Code to display the content goes here
+
+          // Once the content is displayed, hide the loading screen
+          loading.style.display = "none";
+        }, 2000); // Adjust the delay time as needed                                                                   
+      });
+    </script>
 
 </body>
 
