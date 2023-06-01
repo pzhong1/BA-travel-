@@ -232,20 +232,22 @@ button {
         align-items: center;
         overflow-x:hidden
     }
-    
+    .forecast-container{
+        display:block;
+    }
     #sec-question{ 
         font-size: 1.35rem;
         line-height: 1.95rem;
     }
     #search-btn{
-        margin-right:165px;
+        margin-right:150px;
     }
     /*  */
     #flight-form{
         margin-top:px;
     }
      /* Input styling */
-    input {
+    .city-input {
         width: 100%;
         margin-bottom: 1rem;
     }
