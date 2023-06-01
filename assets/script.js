@@ -9,18 +9,19 @@ $(document).ready(function () { // using ready() method to warp all the codes to
 
     fetch(weatherApiUrl)
       .then(response => {
-        if (response.ok) {
+        if (response => ok) {
           return response.json();
         } else {
           throw new Error('Error: ' + response.statusText);
         }
-      })
-      .then(answer => {
-        // creat a HTML string(h2) this is use to display weather infomation 
-        var weatherInfoHtml = '<h2>Weather for ' + city + '</h2>'; // weather for any city that user entered  will display at FlyDrvie page 
+      }) //close fetch
 
-        for (var i = 0; i < answer.list.length; i += 7) { // for loop  i have 5 days weather so i set i += 7 so the code for weather only display only once
-          var date = new Date(answer.list[i].dt * 1000);  // .dt(data receiving time)  *1000 to obtain timestamp to date format
+
+      .then(answer => {
+        var weatherInfoHtml = "<div>"; '<h2>Weather for ' + city + '</h2>'; // weather for any city that user entered  will display at FlyDrvie page 
+
+        for (var i = 0; i < answer.list.length; i +=8) { // for loop  i have 5 days weather so i set i += 8 so the code for weather only display only once
+          var date = new Date(answer.list[i].dt * 1000);
           var temperatureC = answer.list[i].main.temp - 273.15;  //-273.15 so i can get Celsius
           var temperatureF = temperatureC * 9 / 5 + 32;// use this formula to change to from C to Fahrenheit
           var weatherDescription = answer.list[i].weather[0].description;// description for weather infomation
@@ -33,7 +34,7 @@ $(document).ready(function () { // using ready() method to warp all the codes to
 
           weatherInfoHtml += '<h3>' + date.toLocaleDateString() + '</h3>'; //create a h3 element and add the data info for display in web page and use toLocalDateString() to formatted the date information
           weatherInfoHtml += '<p>Temperature: ' + temperatureF.toFixed(0) + '°F' + weatherIconHtml + '</p>'; // temperature info will display in F  and i set tofix(0) so i can get a whole nume for temperture  in stead of getting any decimal  
-          weatherInfoHtml += '<p>Weather status: ' + weatherDescription + '</p>'; // create a p element for weather status  display 
+          weatherInfoHtml += '<p>Weather status: ' + weatherDescription + '</p>'; "</div>"; // create a p element for weather status  display 
         } //for loop
 
         $('#weather-info').html(weatherInfoHtml);
@@ -46,22 +47,28 @@ $(document).ready(function () { // using ready() method to warp all the codes to
         }, 100);  //100 = 1sec
       })
       .catch(error => console.log('Error: ', error));
-  }
 
-  var weatherInfo = localStorage.getItem('weatherInfo');// store the weather info and sign to wearher info
-  if (weatherInfo) { // use if statment to check if the weather info has a value or not, if has a value then save the weather infomtaion to local storage
-    $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
-  }
+  }// close function loadData
 
-  // click function for  search button//////////////
-  $('#search-btn').click(function (event) { // click function that link to id search-btn 
-    event.preventDefault();
-    console.log("Button clicked"); // im just testing make sure my click function is working //after testing it is working 
-    var city = $('#city-input').val(); // add val() method to id city-input and gave it a var name city so when input random city the brower will remember the cityName  user just entered
-    if (city !== "") { // city input can't not be empty. if is not empty then call the function loadData
-      loadData(city); // Call your function here
-    }// closing if statement
-  }); // closing click fucntion
+
+
+
+var weatherInfo = localStorage.getItem('weatherInfo');// store the weather info and sign to wearher info
+if (weatherInfo) { // use if statment to check if the weather info has a value or not, if has a value then save the weather infomtaion to local storage
+  $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
+}
+
+// click function for  search button//////////////
+$('#search-btn').click(function (event) { // click function that link to id search-btn 
+  event.preventDefault();
+  var destination = $('#city-input').val();
+  localStorage.setItem('destination', destination);
+  console.log("Button clicked"); // im just testing make sure my click function is working //after testing it is working 
+  var city = $('#city-input').val(); // add val() method to id city-input and gave it a var name city so when input random city the brower will remember the cityName  user just entered
+  if (city !== "") { // city input can't not be empty. if is not empty then call the function loadData
+    loadData(city); // Call your function here
+  }// closing if statement
+}); // closing click fucntion
 
 
 });// closing ready() method

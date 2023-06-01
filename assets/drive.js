@@ -1,25 +1,80 @@
-function calculateRouteFromAtoB(platform) {
-    var router = platform.getRoutingService(null, 8),
-        routeRequestParams = {
+//User input function
 
-            routingMode: 'fast',
-            transportMode: 'car',
-            origin: '29.424349,-98.491142', //Start point
-            destination: '32.779167,-96.808891', // End point
-            return: 'polyline,turnByTurnActions,actions,instructions,travelSummary'
-        };
+var destination = localStorage.getItem('destination');
+
+function inputSubmit(event) {
+    event.preventDefault();
+    const startInput = document.getElementById('startPoint').value;
+    const endInput = document.getElementById('endPoint').value;
+    console.log(startInput, endInput);
+    //store in local storage
+    localStorage.setItem(startInput, endInput);
+}
+
+//function to get end point 
+function destinationINFO(destinationCity, startingLat, startingLon) {
+    fetch(`https://geocode.search.hereapi.com/v1/geocode?apikey=vZbOvGRRqgLAPG9Cz9CDrJ-4tIAW5-9L-kyYJGKX2MY&q=${destinationCity}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            var finalLatitude = data.items[0].position.lat;
+            //console.log(lat);
+
+            var finalLongitude = data.items[0].position.lng;
+            //console.log(lon);
+            calculateRouteFromAtoB(platform, startingLat, startingLon, finalLatitude, finalLongitude)
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
+
+}
+//function to get starting point 
+function startingINFO(startingCity, finalCity) {
+    fetch(`https://geocode.search.hereapi.com/v1/geocode?apikey=vZbOvGRRqgLAPG9Cz9CDrJ-4tIAW5-9L-kyYJGKX2MY&q=${startingCity}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            var latitude = data.items[0].position.lat;
+            //console.log(lat);
+
+            var longitude = data.items[0].position.lng;
+            //console.log(lon);
+            destinationINFO(finalCity, latitude, longitude)
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
+
+}
+//funtion to pull routing service from api and run parameters 
+function calculateRouteFromAtoB(platform, startingLat, startingLon, finalLat, finalLon) {
+
+    var router = platform.getRoutingService(null, 8);
+    routeRequestParams = {
+
+        routingMode: 'fast',
+        transportMode: 'car',
+        origin: `${startingLat},${startingLon}`, //Start point
+        destination: `${finalLat},${finalLon}`, // End point
+        return: 'polyline,turnbyturnactions,actions,instructions,travelSummary',
+    };
     router.calculateRoute(
         routeRequestParams,
         onSuccess,
         onError
     );
 }
-
-function onSuccess(result) {
-    var route = result.routes[0];
-    //styling the route
+//function ran once data is returned successful 
+function onSuccess(data) {
+    console.log(data);
+    var route = data.routes[0];
+    //run seperate functions once data is available 
     addRouteShapeToMap(route);
     addManueversToMap(route);
+    addWaypointsToPanel(route);
+    addManueversToPanel(route);
+    addSummaryToPanel(route);
 }
 
 //This function will be called if a communication error occurs during the JSON-P
@@ -29,8 +84,9 @@ function onError(error) {
 }
 
 // the map + panel
-var mapContainer = document.getElementById('map'),
-    routeInstructionsContainer = document.getElementById('panel');
+var mapContainer = document.getElementById('map');
+var routeInstructionsContainer = document.getElementById('panel');
+
 //communication with the platform
 var platform = new H.service.Platform({
     apikey: 'vZbOvGRRqgLAPG9Cz9CDrJ-4tIAW5-9L-kyYJGKX2MY'
@@ -69,6 +125,13 @@ function openBubble(position, text) {
 //route polyline
 
 function addRouteShapeToMap(route) {
+    mapContainer.innerHTML = "";
+    map = new H.Map(mapContainer,
+        defaultLayers.vector.normal.map, {
+        center: { lat: '', lng: '' },
+        zoom: 1,
+        pixelRatio: window.devicePixelRatio || 1
+    });
     route.sections.forEach((section) => {
         // decode LineString from the flexible polyline
         let linestring = H.geo.LineString.fromFlexiblePolyline(section.polyline);
@@ -84,7 +147,9 @@ function addRouteShapeToMap(route) {
         // Adds zoom to its bounding rectangle
         map.getViewModel().setLookAtData({
             bounds: polyline.getBoundingBox()
+
         });
+
     });
 }
 //Map markers
@@ -102,6 +167,7 @@ function addManueversToMap(route) {
         let poly =
             H.geo.LineString.fromFlexiblePolyline(section.polyline).getLatLngAltArray();
         let actions = section.actions;
+        console.log(actions);
 
         // Add a marker for each maneuver
         for (i = 0; i < actions.length; i += 1) {
@@ -122,45 +188,75 @@ function addManueversToMap(route) {
         map.addObject(group);
     });
 }
-//pannel trip summary
+//Adds turn by turn instructions to bottom of map
+function addWaypointsToPanel(route) {
+    var nodeH3 = document.createElement('h3'),
+        labels = [];
+
+    route.sections.forEach((section) => {
+        labels.push(
+            section.turnByTurnActions[0].nextRoad.name[0].value)
+        labels.push(
+            section.turnByTurnActions[section.turnByTurnActions.length - 1].currentRoad.name[0].value)
+    });
+
+    nodeH3.textContent = labels.join(' - ');
+    routeInstructionsContainer.innerHTML = '';
+    routeInstructionsContainer.appendChild(nodeH3);
+}
+//Adds summary of trip to bottom of map
 function addSummaryToPanel(route) {
     let duration = 0,
         distance = 0;
+
     route.sections.forEach((section) => {
         distance += section.travelSummary.length;
         duration += section.travelSummary.duration;
     });
+    // Shows time and distance on Info Panel
     var summaryDiv = document.createElement('div'),
         content = '<b>Total distance</b>: ' + distance + 'm. <br />' +
             '<b>Travel Time</b>: ' + toMMSS(duration) + ' (in current traffic)';
+
     summaryDiv.style.fontSize = 'small';
     summaryDiv.style.marginLeft = '5%';
     summaryDiv.style.marginRight = '5%';
     summaryDiv.innerHTML = content;
-
+    routeInstructionsContainer.appendChild(summaryDiv);
 }
-//map marker points
+
 function addManueversToPanel(route) {
     var nodeOL = document.createElement('ol');
+
     nodeOL.style.fontSize = 'small';
     nodeOL.style.marginLeft = '5%';
     nodeOL.style.marginRight = '5%';
     nodeOL.className = 'directions';
+
     route.sections.forEach((section) => {
         section.actions.forEach((action, idx) => {
             var li = document.createElement('li'),
                 spanArrow = document.createElement('span'),
                 spanInstruction = document.createElement('span');
+
             spanArrow.className = 'arrow ' + (action.direction || '') + action.action;
             spanInstruction.innerHTML = section.actions[idx].instruction;
             li.appendChild(spanArrow);
             li.appendChild(spanInstruction);
+
             nodeOL.appendChild(li);
         });
     });
-    //routeInstructionsContainer.appendChild(nodeOL);
+
+    routeInstructionsContainer.appendChild(nodeOL);
 }
+
 function toMMSS(duration) {
     return Math.floor(duration / 60) + ' minutes ' + (duration % 60) + ' seconds.';
 }
-calculateRouteFromAtoB(platform);
+
+$('#submitButton').on('click', function() {
+
+    var startingPoint = $('#startPoint').val();
+    startingINFO(startingPoint, destination);
+})
