@@ -171,6 +171,19 @@ button {
 
 }
 
+.mobile-button{
+    width: 100%;
+}
+
+.desktop-spacing{
+    gap:20px;
+}
+
+.input-container{
+    width: 100%;
+}
+
+
 @media only screen and (max-device-width: 480px) {
     #travel-cont {
         flex-direction: column;
@@ -210,15 +223,49 @@ button {
         font-size: 1.35rem;
         line-height: 1.95rem;
     }
-     #search-btn{
+    #search-btn{
         margin-right:165px;
-     }
-     #flight-form{
+    }
+    /*  */
+    #flight-form{
         margin-top:px;
-     }
-     .modal-image{
-        margin-top: 200px;
-     }
+    }
+     /* Input styling */
+    input {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    /* Button styling */
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Center the buttons horizontally */
+    }
+    
+    button {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .image-container {
+        display: flex;
+        justify-content: center; /* Center the content horizontally */
+        align-items: center; /* Center the content vertically */
+        margin-bottom: 1rem;
+    }
+    .modal-image{
+        height: 90vh;
+        max-height: unset;
+    }
+    .mobile-button{
+        width:100%;
+        margin: 0;
+    }
+
+    .desktop-spacing{
+        gap: 0px;
+    }
 }
 
 .background-cloud {
