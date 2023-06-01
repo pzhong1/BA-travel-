@@ -13,10 +13,18 @@ maximum-scale=1.0, user-scalable=yes">
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script src="https://kit.fontawesome.com/f9b2c738a6.js" crossorigin="anonymous"></script>
 </head>
 
 <body id="markers-on-the-map">
+    <header class="bg-blue-600 flex">
+        <a href="index.html">
+          <h1 id=" heading"class="pl-6 text-white">BA Travel: Ready to roam?</h1>
+        </a>
+        
+      </header>
 <div class="flex flex-col h-full w-full bg-gradient-to-r from-sky-500 to-indigo-500 justify-center content-center"> 
+    <p id="Drive Details"class="text-2xl mb-4 text-center p-8 bg-white bg-opacity-25 rounded-lg">Enter Drive Details</p>
     <div class="flex flex-col w-1/2 mt-20 ml-auto mr-auto p-8 bg-white bg-opacity-25 rounded-lg">
     <input id="startPoint" type="text" placeholder="Starting City"/>
     <button type="submit" id="submitButton" class="my-10 bg-indigo-600 rounded p-3 text-white">Submit</button>
