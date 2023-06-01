@@ -57,6 +57,7 @@ function calculateRouteFromAtoB(platform, startingLat, startingLon, finalLat, fi
         transportMode: 'car',
         origin: `${startingLat},${startingLon}`, //Start point
         destination: `${finalLat},${finalLon}`, // End point
+        units:'imperial',
         return: 'polyline,turnbyturnactions,actions,instructions,travelSummary',
     };
     router.calculateRoute(
@@ -260,6 +261,3 @@ $('#submitButton').on('click', function() {
     var startingPoint = $('#startPoint').val();
     startingINFO(startingPoint, destination);
 })
-
-
-
