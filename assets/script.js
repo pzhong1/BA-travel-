@@ -9,14 +9,12 @@ $(document).ready(function () { // using ready() method to warp all the codes to
 
     fetch(weatherApiUrl)
       .then(response => {
-        if (response => ok) {
+        if (response.ok) {
           return response.json();
         } else {
           throw new Error('Error: ' + response.statusText);
         }
-      }) //close fetch
-
-
+      })
       .then(answer => {
         var weatherInfoHtml = "<div>"; '<h2>Weather for ' + city + '</h2>'; // weather for any city that user entered  will display at FlyDrvie page 
 
@@ -39,24 +37,25 @@ $(document).ready(function () { // using ready() method to warp all the codes to
 
         $('#weather-info').html(weatherInfoHtml);
         localStorage.setItem('weatherInfo', weatherInfoHtml);// stores the weather information HTML  in the browser local storage so the info will display when page is load
+        
+        // adventure awaits diologue element
+        var dialog = document.querySelector('dialog');
+        dialog.show()
 
 
-        // set time when i click the search button at home page then it will take i sec and then load to the other page 
+        // set time when i click the search button at home page then it will take i sec and then load to the other page
         setTimeout(function () {
           window.location.href = './FlyDriveWeather.html';
-        }, 100);  //100 = 1sec
+        }, 3000);  //1000 = 1sec
       })
+
       .catch(error => console.log('Error: ', error));
+  }
 
-  }// close function loadData
-
-
-
-
-var weatherInfo = localStorage.getItem('weatherInfo');// store the weather info and sign to wearher info
-if (weatherInfo) { // use if statment to check if the weather info has a value or not, if has a value then save the weather infomtaion to local storage
-  $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
-}
+  var weatherInfo = localStorage.getItem('weatherInfo');// store the weather info and sign to wearher info
+  if (weatherInfo) { // use if statment to check if the weather info has a value or not, if has a value then save the weather infomtaion to local storage
+    $('#weather-info').html(weatherInfo);// add the wather infomation  in to html so that the weather infomation can display in web page
+  }
 
 // click function for  search button//////////////
 $('#search-btn').click(function (event) { // click function that link to id search-btn 
