@@ -103,6 +103,15 @@ header h1 {
 #search-container h1 {
     font-family: 'Shrikhand', cursive;
 }
+/* adventure awaits diologue element  */
+dialog {
+    width: 25%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 2%;
+    opacity: 0.9;
+}
 
 #heading {
     font-family: 'Shrikhand', cursive;
