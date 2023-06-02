@@ -62,7 +62,17 @@ header h1 {
 
     font-family: 'Shrikhand', cursive;
 }
-
+#city-input, #search-btn{
+    flex-basis: 25%;
+}
+#city-input{
+    margin-left: 10rem;
+    margin-right:10px;
+}
+#search-btn{
+    margin-right: 10rem;
+    width:86px;
+}
 #background-image {
     position: absolute;
     /* Set the position to absolute */
@@ -123,11 +133,25 @@ button {
     text-align: center;
 }
 
-#weather-info div{
+/*
+#weather-info div {
     display: flex;
     flex-wrap:wrap;
     justify-content: space-around;
     font-family: 'Shrikhand', cursive;
+}
+*/
+#weather-info {
+  /*  display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    */
+    font-family: 'Shrikhand', cursive;
+}
+
+.forecast-container {
+    display: flex;
+    justify-content: space-around;
 }
 
 .loading {
@@ -227,20 +251,25 @@ button {
         align-items: center;
         overflow-x:hidden
     }
-    
+    #search-container>*{
+        flex-basis: 25%;
+    }
+    .forecast-container{
+        display:block;
+    }
     #sec-question{ 
         font-size: 1.35rem;
         line-height: 1.95rem;
     }
     #search-btn{
-        margin-right:165px;
+        margin-right:150px;
     }
     /*  */
     #flight-form{
         margin-top:px;
     }
      /* Input styling */
-    input {
+    .city-input {
         width: 100%;
         margin-bottom: 1rem;
     }
