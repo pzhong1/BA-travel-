@@ -37,13 +37,18 @@ $(document).ready(function () { // using ready() method to warp all the codes to
 
         $('#weather-info').html(weatherInfoHtml);
         localStorage.setItem('weatherInfo', weatherInfoHtml);// stores the weather information HTML  in the browser local storage so the info will display when page is load
+        
+        // adventure awaits diologue element
+        var dialog = document.querySelector('dialog');
+        dialog.show()
 
 
-        // set time when i click the search button at home page then it will take i sec and then load to the other page 
+        // set time when i click the search button at home page then it will take i sec and then load to the other page
         setTimeout(function () {
           window.location.href = './FlyDriveWeather.html';
-        }, 100);  //100 = 1sec
+        }, 3000);  //1000 = 1sec
       })
+
       .catch(error => console.log('Error: ', error));
   }
 
