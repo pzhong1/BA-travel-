@@ -105,9 +105,9 @@ header h1 {
 }
 /* adventure awaits diologue element  */
 dialog {
-    width: 25%;
+  /*  width: 25%;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     text-align: center;
     margin-top: 2%;
     opacity: 0.9;
@@ -169,6 +169,9 @@ button {
 
   .modal-content {
     position: relative;
+    background-image: url("./img/jason-leung-SvdOOFYjs-Y-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
   .modal-image {
@@ -266,7 +269,7 @@ button {
     }
     /*  */
     #flight-form{
-        margin-top:px;
+        margin-top: 5px;
     }
      /* Input styling */
     .city-input {
@@ -303,6 +306,17 @@ button {
 
     .desktop-spacing{
         gap: 0px;
+    }
+
+    /* adventure awaits diologue element  */
+    dialog {
+        position: relative;
+        width: 70%;
+     /*   justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 2%;
+        opacity: 0.9; */
     }
 }
 

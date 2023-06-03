@@ -3,7 +3,6 @@
 $(document).ready(function () { // using ready() method to warp all the codes to make sure the HTML is fully loaded before running any other codes 
   var apiKey = "e9fca33cb368be842d7fa15031d8b7e5"; // puze zhong's openweather API key for weather info
 
-
   function loadData(city) {
     var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;// openweather webside  this is for when user enter city then the server side API will display the weather info, it require personal API key which i included above
 
