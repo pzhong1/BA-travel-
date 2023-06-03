@@ -4,6 +4,9 @@ $(document).ready(function () {
 
   // fly API info
   function loadFlights(destinationCity, departureCity, departureDate) {
+    // Show the loading screen
+    $('#loading').removeClass('hidden');
+
     var travelApiUrl = `https://test.api.amadeus.com/v2/shopping/flight-offers?currencyCode=USD&originLocationCode=${departureCity.toUpperCase()}&destinationLocationCode=${destinationCity.toUpperCase()}&departureDate=${departureDate}&adults=1&nonStop=false&max=10`;
 
     var securityUrl = `https://test.api.amadeus.com/v1/security/oauth2/token`;
@@ -28,6 +31,8 @@ $(document).ready(function () {
         })
         .then(function (data) {
           console.log(data);
+          // Hide the loading screen
+          $('#loading').addClass('hidden');
 
           var flightsInfoHtml = '<h2 style="font-weight: bold; font-size: 24px; text-align: center;">Flights information for ' + destinationCity + '</h2>';
 
@@ -47,6 +52,7 @@ $(document).ready(function () {
           } else {
             console.error('Invalid API response:', data);
           }
+          // Updates the flights info
           $('#flights-info').html(flightsInfoHtml);
 
         });
