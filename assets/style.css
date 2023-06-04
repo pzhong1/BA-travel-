@@ -324,14 +324,14 @@ background-image: url("data:image/svg+xml,%3Csvg width='44' height='12' viewBox=
 
 #submitButton {
     font-family: 'Shrikhand', cursive;
-    font-size: 3rem;
+    font-size: 1rem;
     /* 48px */
     line-height: 1;
 }
 
 #back-bttn {
     font-family: 'Shrikhand', cursive;
-    font-size: 3rem;
+    font-size: 1rem;
     /* 48px */
     line-height: 1;
 }
@@ -345,7 +345,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='44' height='12' viewBox=
 
 #startPoint {
     font-family: 'Shrikhand', cursive;
-    font-size: 3rem;
+    font-size: 2rem;
     /* 48px */
     line-height: 1;
 }
